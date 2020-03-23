@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>TP Taquin</title>
+
+	<link rel="stylesheet" href="assets/jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.css" />
+    <!--link rel="stylesheet" href="style.css"-->
+	<script src="assets/jquery-1.11.1.min.js"></script>
+	<script src="assets/jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.js"></script>
+	<script src="flikrAPI.js"></script>
+
+
+
+</head>
+<body>
+	<!-- /Menu -->
+	<div data-role="page" >
+	
+		<div data-role="header">
+			<h1>Menu</h1>
+		</div>
+		
+		<div data-role="content">
+			<ul data-role="listview" data-inset="true">
+				<li><a href="#page1">Afficher une image</a></li>
+				<li><a href="#page2">Adapter la largeur d'une image avec CSS</a></li>
+				<li><a href="#page3">Adapter les dimensions d'une image avec JS</a></li>
+				<li><a href="#page4">Transformer une image</a></li>
+				<li><a href="#page5">Génération d'éléments</a></li>
+				<li><a href="#page6">Annimation: Déplacer une image</a></li>
+				<li><a href="#page7">Affichage d'images issues de Flikr</a></li>
+				<li><a href="Jeu.html" rel="externel" >Jeu de Taquin</a></li>
+			</ul>
+		</div>
+		<div data-role="footer">
+			<h1>@BENTAKHOU Oumaima</h1>
+		</div>
+	
+	</div>
+	<!-- /Afficher une image -->
+	<div data-role="page" id="page1" >
+	
+		<div data-role="header">
+			<h1>Menu</h1>
+		</div>
+		
+		<div data-role="content">
+			<img src="assets/img/600.jpg" >
+		</div>
+		<div data-role="footer">
+			<h1>@BENTAKHOU Oumaima</h1>
+		</div>
+	
+	</div>
+	<!-- /Adapter la largeur en CSS -->
+	<div data-role="page" id="page2">
+        <style type="text/css" media="screen">
+			#myimage2 {
+				 width: 70%;
+		
+			}		
+		</style>
+		
+		<div data-role="header">
+			<h1>Adapter la largeur en CSS </h1>
+		</div>
+		
+		<div data-role="content">
+			<img id="myimage2" src="assets/img/600.jpg" >
+		</div>
+		<div data-role="footer">
+			<h1>@BENTAKHOU Oumaima</h1>
+		</div>
+		
+		
+	</div><!-- /page -->
+	<!-- /Adapter les dimensions en JS -->
+	<div data-role="page" id="page3">
+		<style type="text/css" media="screen">
+			#myimage3 {
+				 width: 70%;
+				
+			}		
+		</style>
+		<script>
+			var screenWidth = $(window).width();
+			var screenHeight = $(window).height()-80;
+			$(document).on('pageinit', '#mypage', function(evt){
+			   var size=(Math.min(screenWidth,screenHeight)*80.0)/100.0;
+			   $("#myimage3").width(size);
+		    });
+				
+		</script>
+	
+		<div data-role="header">
+			<h1>Adapter les dimensions en JS</h1>
+		</div>
+		
+		<div data-role="content">
+			<img id="myimage3" src="assets/img/600.jpg" >
+		</div>
+		<div data-role="footer">
+			<h1>@BENTAKHOU Oumaima</h1>
+		</div>
+	
+	</div>
+	<!-- /Transformer une image-->
+	<div data-role="page" id="page4">
+		<style type="text/css" media="screen">
+			#myimage4 {
+				 width: 70%;
+				
+				 
+			}		
+		</style>
+		<script>
+			var screenWidth = $(window).width();
+			var screenHeight = $(window).height()-80;
+			$(document).on('pageinit', '#page4', function(evt){
+			   var size=Math.min(screenWidth,screenHeight)*80.0/100.0;
+			   $("#myimage4").width(size);
+			   //Taille
+			  
+				
+			   //Rotation
+
+		    }); 
+			$(document).on('change', '#slider-1', function(e){
+				var taille=e.target.value;
+				$("#myimage4").css('width',taille+'%');
+
+			});
+			$(document).on('change', '#slider-2', function(e){
+				var rot=e.target.value;
+				$("#myimage4").css('transform','rotate('+rot+'deg)');
+
+			});
+			$(document).on('change', '#mirroir', function(e){
+				var M=e.target.value;
+				$("#myimage4").css('transform','scaleX('+M+')');
+
+			});
+		</script>
+	
+		<div data-role="header">
+			<h1>Transformer une image</h1>
+		</div>
+		
+		<div data-role="content">
+			<img src="assets/img/600.jpg" id="myimage4" >
+			<div class="ui-field-contain">
+				<label for="slider-1">Taille:</label>
+				<input type="range" name="slider-1" id="slider-1"  min="0" max="100">
+			</div>
+			<hr>
+			<div class="ui-field-contain">
+				<label for="slider-2">Rotation:</label>
+				<input type="range" name="slider-2" id="slider-2"  min="0" max="100">
+			</div>
+			<hr>
+			<div class="ui-field-contain">
+				<label for="slider-mirroir">Mirroir:</label>
+				<input type="range" name="mirroir" id="mirroir"  min="-1" max="1">
+			</div>
+
+		</div>
+		
+		<div data-role="footer">
+			<h1>@BENTAKHOU Oumaima</h1>
+		</div>
+	
+	</div>
+	<!-- /Génération d'éléments-->
+	<div data-role="page" id="page5">
+		<style type="text/css" media="screen">
+			#myimage5 {
+				 width: 70%;
+			}		
+			.cell2{
+              
+				border:1px solid #aeaeae;
+		
+			
+				float:left;
+                clear:both;
+			}
+			.cell1{
+              
+			  border:1px solid #aeaeae;
+		
+			  float:left;
+			
+		  }
+		  .grid {
+         	
+         	padding:0;
+         	border:none;
+         	outline:1px solid #000;
+         	display:inline-block;
+         }
+         #play {
+         	position: relative;
+         	top: 30px;
+         	outline:2px solid #000;
+         	font-size: 0;
+         	margin:auto;
+         	height:600px;
+         	width:600px;
+         	padding: 0;
+         	border: none;
+         
+         }
+         	
+
+
+		</style>
+		<script>
+			var screenWidth = $(window).width();
+			var screenHeight = $(window).height();
+			var ligne = 3;
+            var colonne = 3;
+            var espace = 1;
+			var screenMax=Math.floor(Math.min(screenWidth,screenHeight)*0.9);
+	
+
+             
+             function gridwidth(l){
+             
+             return l;
+             }
+             function gridheight(l){
+             return l;
+             }
+             function createGrid(l,c) {
+                 var gridWidth  =600/l;
+             	var gridHeight =600/c;
+             	
+                 for (var i = 0;i< l; i++) {
+                     for (var j= 0; j < c; j++) {
+             			id="grid"+(i*colonne+j);
+             						  bposX = (-1)* j*gridWidth;
+             					      bposY = (-1)* i*gridHeight;
+             						  $("#play").append("<div class='grid' row='"+i+"' col='"+
+             						  j+"' id='"+
+             						  id+"'"+"style='width:"+
+             						  gridWidth+"px; height:"+
+             						  gridHeight+"px;background-position:"
+             						  + bposX +"px "+ bposY +"px; left:"+
+             						  parseInt(j* gridWidth) +"px; top :"+
+             						  parseInt(i*gridHeight)+"px;'></div>");
+             
+             
+                     };
+                 };
+             	
+             	//$(".grid").css('margin',1);
+             
+             
+             };
+             
+             // function that clears the grid
+             function clearGrid(){
+             	$("#play").empty();
+             };  
+             
+             function refreshGrid(n,m){
+                
+                 clearGrid();
+                 createGrid(n,m);
+             };
+
+			$(document).delegate('#page5', 'pageinit', function(evt){
+			    var ligne;
+				var colonne;
+				createGrid(4,4);
+				$("#settings").bind('click',function(event,ui){
+					var n=$('#nbLigneSlider').slider().val();
+					var m=$('#nbColonneSlider').slider().val();
+					refreshGrid(m,n);
+				}); 
+
+				
+			});
+
+
+			
+		</script>
+	
+		<div data-role="header">
+			<h1>Génération d'éléments</h1>
+		</div>
+		
+		<div data-role="content">
+			<button class="newGrid">New Grid</button>
+
+		
+			<div id="play"></div>
+			<br>
+			<br>
+			
+		
+			<div class="ui-field-contain">
+				<label for="nbLigneSlider">nombre de lignes ::</label>
+				<input type="range" name="nbLigneSlider" id="nbLigneSlider"  min="0" max="10" value="3">
+			</div>
+			<hr>
+			<div class="ui-field-contain">
+				<label for="nbColonneSlider">nombre de colonnes:</label>
+				<input type="range" name="nbColonneSlider" id="nbColonneSlider"  min="0" max="10" value="3">
+			</div>
+			<hr>
+			<div class="ui-field-contain">
+				<label for="espaceSlider">espace:</label>
+				<input type="range" name="espaceSlider" id="espaceSlider"  min="0" max="5" value="1">
+			</div>
+			<a href="#page5" id="settings" data-role="button">Valider</a>
+			
+			
+		</div>
+		<div data-role="footer">
+			<h1>@BENTAKHOU Oumaima</h1>
+		</div>
+	
+	</div>
+	<!-- /Animation : Déplacer une image -->
+	<div data-role="page" id="page6">
+        <style type="text/css" media="screen">
+		#myimage6 {
+           position: absolute;
+           display: block;
+		   width: 100px;
+		   height: 100px;
+        }
+		</style>
+		<script >
+	
+	        $(document).delegate('#page6', 'pageinit', function(evt){
+		     	$('#myimage6').click(function(event) {
+                 // this refers to DOM element
+                 var $this = $(this);
+                 // $this refers to JQuery wrapper of DOM element
+                 $this.animate({
+                 left: $this.position().top + $this.height()},1000);
+				
+				});
+			});
+
+				
+		</script>
+		<div data-role="header">
+			<h1>Animation : Déplacer une image</h1>
+		</div>
+		
+		<div data-role="content" class="box">	
+		    <img src="assets/img/600.jpg" id="myimage6">	
+		</div>
+	
+	</div>
+	<!-- /Affichage d'images issues de Flikr -->
+	<div data-role="page" id="page7">
+		<style type="text/css" media="screen">
+		#myimage7 {
+			
+           display: block;
+		   width: 600px;
+		   height: 600px;
+		   
+        }
+	
+		</style>
+		<script>
+			var images = [];
+			var URL;
+			var srcImage;
+			var indice;
+			$.getJSON(getFlikrApiURLForTextAndNumber('starwars',15),function(json){
+				images = json.photos.photo;
+				URL=getImageURL(images[0]);
+				indice=0;
+				document.getElementById('myimage7').src = URL;
+				preloadImages(images);
+			});
+			function preloadImages(array) {
+				if (!preloadImages.list) {
+					preloadImages.list = [];
+				}
+				var list = preloadImages.list;
+				for (var i = 0; i < array.length; i++) {
+					var img = new Image();
+					img.onload = function() {
+						var index = list.indexOf(this);
+						if (index !== -1) {
+							// remove image from the array once it's loaded
+							// for memory consumption reasons
+							list.splice(index, 1);
+						 }
+					 }
+					 list.push(img);
+					 img.src = array[i];
+				}
+			}
+
+
+			$(document).delegate('#page7', 'pageinit', function(evt){
+				$("#suivant").bind('click',function(event,ui){
+					indice++;
+					URL=getImageURL(images[indice]);
+					document.getElementById('myimage7').src = URL;
+				});
+				$("#precedent").bind('click',function(event,ui){
+					indice--;
+					URL=getImageURL(images[indice]);
+					document.getElementById('myimage7').src = URL;
+				});
+			});
+
+				
+		</script>	
+		<div data-role="header">
+			<h1>Afficher une image à partir de Flickr</h1>
+		</div>
+		
+		<div  data-role="content">
+			<button id="precedent">Précédent</button>
+			<button id="suivant">Suivant</button>
+			<img  id="myimage7">
+		</div>
+		<div data-role="footer">
+			<h1>@BENTAKHOU Oumaima</h1>
+		</div>
+	
+	</div>
+	<!-- /Jeu de Taquin -->
+	
+	
+	
+		
+</body>
